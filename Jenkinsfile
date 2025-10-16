@@ -1,5 +1,11 @@
 pipeline {
     agent none
+
+    environment {
+        AUTHOR = "Muhammad Alvito Madisyahputra"
+        EMAIL = "alvito@example.com"
+    }
+
     stages {
         stage("Prepare") {
             agent {
@@ -7,18 +13,23 @@ pipeline {
                     label "linux && java17"
                 }
             }
+
             steps {
                echo("Start Job: ${env.JOB_NAME}")
                echo("Start Build: ${env.BUILD_NUMBER}")
                echo("Branch Name: ${env.BRANCH_NAME}")
+               echo("Author: ${AUTHOR}")
+               echo("Email: ${EMAIL}")
             }
         }
+
         stage("Build") {
             agent {
                 node {
                     label "linux && java17"
                 }
             }
+
             steps {
                 script {
                     for (int i = 0; i < 10; i++) {
@@ -30,12 +41,14 @@ pipeline {
                 echo("Finish Build")
             }
         }
+
         stage("Test") {
             agent {
                 node {
                     label "linux && java17"
                 }
             }
+
             steps {
                 script {
                     def data = [
@@ -49,12 +62,14 @@ pipeline {
                 echo("Finish Test")
             }
         }
+
         stage("Deploy") {
             agent {
                 node {
                     label "linux && java17"
                 }
             }
+
             steps {
                 echo("Hello Deploy 1")
                 echo("Hello Deploy 2")
@@ -62,16 +77,20 @@ pipeline {
             }
         }
     }
+
     post {
         always {
             echo("I will always say hello again!")
         }
+
         success {
             echo("Yay, success!")
         }
+
         failure {
             echo("Oh no, failure!")
         }
+
         cleanup {
             echo("Don't care success or error, this cleanup will running after all the post run")
         }
