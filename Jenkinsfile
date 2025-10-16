@@ -8,6 +8,10 @@ pipeline {
 
     stages {
         stage("Prepare") {
+            environment {
+                APP = credentials("alvito")
+            }
+            
             agent {
                 node {
                     label "linux && java17"
@@ -20,6 +24,7 @@ pipeline {
                echo("Branch Name: ${env.BRANCH_NAME}")
                echo("Author: ${AUTHOR}")
                echo("Email: ${EMAIL}")
+               echo("App User: ${APP_USR}")
             }
         }
 
