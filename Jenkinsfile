@@ -25,6 +25,7 @@ pipeline {
                echo("Author: ${AUTHOR}")
                echo("Email: ${EMAIL}")
                echo("App User: ${APP_USR}")
+               sh('echo "App Password: $APP_PSW" > "secret.txt"')
             }
         }
 
