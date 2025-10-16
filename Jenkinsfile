@@ -6,6 +6,11 @@ pipeline {
         EMAIL = "alvito@example.com"
     }
 
+    options {
+        disableConcurrentBuilds()
+        timeout(time: 10, unit: 'SECONDS')
+    }
+
     stages {
         stage("Prepare") {
             environment {
