@@ -216,7 +216,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: "alvito",
-                    usernameVariable: "USER"
+                    usernameVariable: "USER",
                     passwordVariable: "PASSWORD"
                 )]) {
                     sh('echo "App User: $USER \n App Password: $PASSWORD" > "secret.txt"')
