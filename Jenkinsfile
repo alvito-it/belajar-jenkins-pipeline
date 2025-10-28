@@ -37,12 +37,14 @@ pipeline {
                 stage("Prepare Java") {
                     steps {
                         echo("Prepare Java")
+                        sleep(time: 5, unit: SECONDS)
                     }
                 }
 
                 stage("Prepare Maven") {
                     steps {
                         echo("Prepare Maven")
+                        sleep(time: 5, unit: SECONDS)
                     }
                 }
             }
@@ -163,7 +165,7 @@ pipeline {
             }
 
             steps {
-                echo("Release ")
+                echo("Release success")
             }
         }
     }
