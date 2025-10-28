@@ -109,6 +109,9 @@ pipeline {
                 message "Should we continue?"
                 ok "Yes, we should."
                 submitter "ags,alvito"
+                parameters {
+                    choice(name: "TARGET_ENV", choices: ["DEV", "QA", "PROD"], description: "Which environment that we should to choose?")
+                }
             }
             agent {
                 node {
@@ -120,6 +123,7 @@ pipeline {
                 echo("Hello Deploy 1")
                 echo("Hello Deploy 2")
                 echo("Hello Deploy 3")
+                echo("Deploy to ${TARGET_ENV} environment")
             }
         }
     }
