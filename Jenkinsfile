@@ -214,7 +214,14 @@ pipeline {
             }
 
             steps {
-                echo("Release success")
+                withCredentials([usernamePassword(
+                    credentialsId: "alvito",
+                    usernameVariable: "USER"
+                    passwordVariable: "PASSWORD"
+                )]) {
+                    sh('echo "App User: $USER \n App Password: $PASSWORD" > "secret.txt"')
+                    echo("Release success")
+                }
             }
         }
     }
